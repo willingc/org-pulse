@@ -3,11 +3,13 @@ Bundler.require
 Dotenv.load
 require 'active_support/core_ext/string/inflections'
 
-org = 'jupyterhub'
-access_token = ENV['GITHUB_TOKEN']
-client = Octokit::Client.new(access_token: access_token, auto_paginate: true)
+# Override org and dates to customize
+org = 'librariesio'
 start_date = '2016-12-01'
 end_date = '2016-12-31'
+
+access_token = ENV['GITHUB_TOKEN']
+client = Octokit::Client.new(access_token: access_token, auto_paginate: true)
 
 repos = client.org_repos(org)
 
