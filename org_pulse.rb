@@ -4,15 +4,11 @@ Dotenv.load
 require 'active_support/core_ext/string/inflections'
 require 'active_support/core_ext/time/calculations'
 
-# Override org and dates to customize
-org = 'librariesio'
-year = 2017
-month = 06
-start_date = Date.civil(year, month, 1)
-end_date = start_date.end_of_month
-
+org = 'jupyterhub'
 access_token = ENV['GITHUB_TOKEN']
 client = Octokit::Client.new(access_token: access_token, auto_paginate: true)
+start_date = '2016-12-01'
+end_date = '2016-12-31'
 
 repos = client.org_repos(org)
 
