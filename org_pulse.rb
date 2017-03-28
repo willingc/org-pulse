@@ -12,8 +12,12 @@ access_token = ENV['GITHUB_TOKEN']
 client = Octokit::Client.new(access_token: access_token, auto_paginate: true)
 
 orgs.each do |org|
+  puts("Starting #{org}")
+
+  file_name = "#{end_date}_#{org}.md"
+  puts("Created #{file_name}")
   # Create file for output
-  open('#{end_date}_#{org}.md', 'w') { |f|
+  open(file_name, 'w') { |f|
   
     repos = client.org_repos(org)
 
@@ -21,7 +25,7 @@ orgs.each do |org|
     total_pull_requests = 0
     total_issues = 0
 
-    f.f.puts "# Progress Report for [#{org}](https://github.com/#{org}) between #{start_date} and #{end_date}"
+    f.puts "# Progress Report for [#{org}](https://github.com/#{org}) between #{start_date} and #{end_date}"
 
     repos.sort_by(&:stars).reverse.each do |repo|
       issues = client.issues(repo.full_name, state: 'all').select{|i| i.pull_request.nil?}
@@ -52,5 +56,6 @@ orgs.each do |org|
     f.puts "- Commits: #{total_commits}"
     f.puts "- Pull requests: #{total_pull_requests}"
     f.puts "- Issues: #{total_issues}"
-  end
+  puts("Completed #{org}")
+  }
 end
