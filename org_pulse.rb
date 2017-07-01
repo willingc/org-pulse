@@ -6,8 +6,8 @@ require 'active_support/core_ext/time/calculations'
 
 # Override org and dates to customize
 orgs = ['ipython', 'jupyter', 'jupyterhub', 'jupyterlab', 'jupyter-widgets']
-start_date = '2017-03-21'
-end_date = '2017-03-28'
+start_date = '2017-06-20'
+end_date = '2017-06-27'
 
 access_token = ENV['GITHUB_TOKEN']
 client = Octokit::Client.new(access_token: access_token, auto_paginate: true)
@@ -19,7 +19,7 @@ orgs.each do |org|
   puts("Created #{file_name}")
   # Create file for output
   open(file_name, 'w') { |f|
-  
+
     repos = client.org_repos(org)
 
     total_commits = 0
