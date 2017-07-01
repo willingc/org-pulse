@@ -6,8 +6,8 @@ require 'active_support/core_ext/time/calculations'
 
 # Override org and dates to customize
 orgs = ['ipython', 'jupyter', 'jupyterhub', 'jupyterlab', 'jupyter-widgets']
-start_date = '2017-06-20'
-end_date = '2017-06-27'
+start_date = '2017-06-27'
+end_date = '2017-07-01'
 
 access_token = ENV['GITHUB_TOKEN']
 client = Octokit::Client.new(access_token: access_token, auto_paginate: true)
